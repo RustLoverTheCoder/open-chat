@@ -1,4 +1,4 @@
-import { Component, createEffect } from "solid-js";
+import { Component, createEffect, createSignal } from "solid-js";
 import { window } from "@tauri-apps/api";
 import Header from "./components/ui/header";
 import Search from "./components/icons/search";
@@ -6,12 +6,17 @@ import UserCircle from "./components/icons/userCircle";
 import Cog from "./components/icons/cog";
 import ChatAlt from "./components/icons/chatAlt";
 import Check from "./components/icons/check";
+import Input from "./components/editor";
 
 const App: Component = () => {
+  let messageContainerRef: HTMLDivElement;
+  const [num, setNum] = createSignal(100);
   createEffect(() => {
     const win = window.getCurrent();
     win.show();
+    messageContainerRef.scrollTop = messageContainerRef.scrollHeight;
   }, []);
+
   return (
     <div class="w-full h-full flex flex-col">
       <Header title="Telegram" />
@@ -68,10 +73,35 @@ const App: Component = () => {
         <div class="hidden sm:flex-1 sm:flex flex-col bg-base-200">
           <div class="w-full h-12 flex items-center border-b border-white/10">
             <div class="w-full flex justify-between items-center px-4">
-              <div class="text-lg font-semibold text-white">王者上分群</div>
+              <div
+                class="text-lg font-semibold text-white"
+                onClick={() => {
+                  setNum((old) => old + 1);
+                  messageContainerRef.scrollTop =
+                    messageContainerRef.scrollHeight;
+                }}
+              >
+                王者上分群
+              </div>
             </div>
           </div>
-          <div class="flex-1"></div>
+          <div class="flex-1 flex flex-col">
+            <div class="flex-1 relative">
+              <div
+                ref={messageContainerRef}
+                class="absolute top-0 right-0 bottom-0 left-0 mb-2 overflow-y-scroll overflow-x-hidden"
+              >
+                <div class="message-container w-full min-h-full flex flex-col justify-end">
+                  {Array.from(new Array(num())).map((_, i) => (
+                    <div class="" style={{ "min-height": "40px" }}>
+                      <div>{i}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+            <Input placeholder="给@奥斯卡私信" />
+          </div>
         </div>
       </div>
     </div>

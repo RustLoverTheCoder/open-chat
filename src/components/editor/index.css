@@ -1,0 +1,8 @@
+.content-editable-input:empty:before {
+    content: attr(aria-label);
+    color: #666a70;
+    @apply text-base;
+    @apply font-normal;
+    @apply pointer-events-none;
+    @apply inline-block;
+}
