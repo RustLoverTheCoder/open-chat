@@ -1,4 +1,11 @@
-import { Component, createEffect, createSignal } from "solid-js";
+import {
+  Component,
+  createEffect,
+  createSignal,
+  onCleanup,
+  For,
+  onMount,
+} from "solid-js";
 import { window } from "@tauri-apps/api";
 import Header from "./components/ui/header";
 import Search from "./components/icons/search";
@@ -7,15 +14,35 @@ import Cog from "./components/icons/cog";
 import ChatAlt from "./components/icons/chatAlt";
 import Check from "./components/icons/check";
 import Input from "./components/editor";
+import { Transition } from "solid-transition-group";
+import MessageList from "./components/ui/MessageList";
+import { setMessages } from "./stores";
+import { now } from "./utils/dateFormat";
 
 const App: Component = () => {
   let messageContainerRef: HTMLDivElement;
-  const [num, setNum] = createSignal(100);
-  createEffect(() => {
+  onMount(() => {
     const win = window.getCurrent();
     win.show();
     messageContainerRef.scrollTop = messageContainerRef.scrollHeight;
-  }, []);
+  });
+  // document.addEventListener("contextmenu", (event) => event.preventDefault());
+  // onCleanup(() => {
+  //   document.removeEventListener("contextmenu", (event) =>
+  //     event.preventDefault()
+  //   );
+  // });
+
+  const handleSend = (value) => {
+    setMessages((old) => [...old, { content: { text: value }, date: now() }]);
+    setTimeout(() => {
+      messageContainerRef.scrollTo({
+        top: messageContainerRef.scrollHeight,
+        left: 0,
+        behavior: "smooth",
+      });
+    });
+  };
 
   return (
     <div class="w-full h-full flex flex-col">
@@ -37,14 +64,14 @@ const App: Component = () => {
             </div>
           </div>
           <div class="flex-1 relative">
-            <div class="absolute top-0 right-0 left-0 bottom-0 overflow-y-auto overflow-x-hidden">
+            <div class="absolute top-0 right-0 left-0 bottom-0 overflow-y-auto overflow-x-hidden custom-scroll">
               {Array.from(new Array(20)).map((_, i) => (
                 <div class="w-full px-2 h-auto">
                   <div class="h-16 w-full px-2 flex items-center space-x-2 rounded-lg cursor-pointer hover:bg-white/10">
                     <img
-                      src="https://avatar.shuocdn.com/raw/11161/8bc6b3ab11ffe3380111e65a4693c20f.jpg?x-oss-process=style/thumbnail&v=0902"
+                      src="https://www.com8.cn/wp-content/uploads/2020/11/20201108023309-5fa758e5be02a.jpg"
                       alt=""
-                      class="w-12 h-12 rounded-full"
+                      class="w-12 h-12 mask mask-squircle"
                     />
                     <div class="flex flex-col justify-center items-start flex-1">
                       <div class="flex items-center justify-between w-full">
@@ -73,35 +100,24 @@ const App: Component = () => {
         <div class="hidden sm:flex-1 sm:flex flex-col bg-base-200">
           <div class="w-full h-12 flex items-center border-b border-white/10">
             <div class="w-full flex justify-between items-center px-4">
-              <div
-                class="text-lg font-semibold text-white"
-                onClick={() => {
-                  setNum((old) => old + 1);
-                  messageContainerRef.scrollTop =
-                    messageContainerRef.scrollHeight;
-                }}
-              >
-                王者上分群
-              </div>
+              <div class="text-lg font-semibold text-white">王者上分群</div>
             </div>
           </div>
-          <div class="flex-1 flex flex-col">
-            <div class="flex-1 relative">
-              <div
-                ref={messageContainerRef}
-                class="absolute top-0 right-0 bottom-0 left-0 mb-2 overflow-y-scroll overflow-x-hidden"
-              >
-                <div class="message-container w-full min-h-full flex flex-col justify-end">
-                  {Array.from(new Array(num())).map((_, i) => (
-                    <div class="" style={{ "min-height": "40px" }}>
-                      <div>{i}</div>
-                    </div>
-                  ))}
+          <Transition name="fade">
+            <div class="flex-1 flex flex-col">
+              <div class="flex-1 relative">
+                <div
+                  ref={messageContainerRef}
+                  class="absolute top-0 right-0 bottom-0 left-0 mb-2 overflow-y-scroll overflow-x-hidden transition-all"
+                >
+                  <div class="message-container w-full min-h-full flex flex-col justify-end">
+                    <MessageList />
+                  </div>
                 </div>
               </div>
+              <Input placeholder="给@奥斯卡私信" onSend={handleSend} />
             </div>
-            <Input placeholder="给@奥斯卡私信" />
-          </div>
+          </Transition>
         </div>
       </div>
     </div>

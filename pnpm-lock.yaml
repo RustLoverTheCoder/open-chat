@@ -1,12 +1,15 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@tailwindcss/typography': ^0.5.4
   '@tauri-apps/api': ^1.0.2
   '@tauri-apps/cli': ^1.0.5
   autoprefixer: ^10.4.8
   daisyui: ^2.20.0
+  dayjs: ^1.11.4
   postcss: ^8.4.14
   solid-js: ^1.4.8
+  solid-transition-group: ^0.0.10
   tailwindcss: ^3.1.7
   typescript: ^4.7.4
   vite: ^3.0.4
@@ -15,9 +18,12 @@ specifiers:
 dependencies:
   '@tauri-apps/api': 1.0.2
   daisyui: 2.20.0_6qxuh3ctkxhae7jnbdaexscv2m
+  dayjs: 1.11.4
   solid-js: 1.4.8
+  solid-transition-group: 0.0.10_solid-js@1.4.8
 
 devDependencies:
+  '@tailwindcss/typography': 0.5.4_tailwindcss@3.1.7
   '@tauri-apps/cli': 1.0.5
   autoprefixer: 10.4.8_postcss@8.4.14
   postcss: 8.4.14
@@ -406,6 +412,17 @@ packages:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.13.0
 
+  /@tailwindcss/typography/0.5.4_tailwindcss@3.1.7:
+    resolution: {integrity: sha512-QEdg40EmGvE7kKoDei8zr5sf4D1pIayHj4R31bH3lX8x2BtTiR+jNejYPOkhbmy3DXgkMF9jC8xqNiGFAuL9Sg==}
+    peerDependencies:
+      tailwindcss: '>=3.0.0 || insiders'
+    dependencies:
+      lodash.castarray: 4.4.0
+      lodash.isplainobject: 4.0.6
+      lodash.merge: 4.6.2
+      tailwindcss: 3.1.7
+    dev: true
+
   /@tauri-apps/api/1.0.2:
     resolution: {integrity: sha512-yuNW0oeJ1/ZA7wNF1KgxhHrSu5viPVzY/UgUczzN5ptLM8dH15Juy5rEGkoHfeXGju90Y/l22hi3BtIrp/za+w==}
     engines: {node: '>= 12.22.0', npm: '>= 6.6.0', yarn: '>= 1.19.1'}
@@ -694,6 +711,10 @@ packages:
       tailwindcss: 3.1.7
     transitivePeerDependencies:
       - ts-node
+    dev: false
+
+  /dayjs/1.11.4:
+    resolution: {integrity: sha512-Zj/lPM5hOvQ1Bf7uAvewDaUcsJoI6JmNqmHhHl3nyumwe0XHwt8sWdOVAPACJzCebL8gQCi+K49w7iKWnGwX9g==}
     dev: false
 
   /debug/4.3.4:
@@ -1076,6 +1097,18 @@ packages:
     resolution: {integrity: sha512-9JROoBW7pobfsx+Sq2JsASvCo6Pfo6WWoUW79HuB1BCoBXD4PLWJPqDF6fNj67pqBYTbAHkE57M1kS/+L1neOg==}
     engines: {node: '>=10'}
 
+  /lodash.castarray/4.4.0:
+    resolution: {integrity: sha512-aVx8ztPv7/2ULbArGJ2Y42bG1mEQ5mGjpdvrbJcJFU3TbYybe+QlLS4pst9zV52ymy2in1KpFPiZnAOATxD4+Q==}
+    dev: true
+
+  /lodash.isplainobject/4.0.6:
+    resolution: {integrity: sha512-oSXzaWypCMHkPC3NvBEaPHf0KsA5mvPrOPgQWDsbg8n7orZ290M0BmC/jgRZ4vcJ6DTAhjrsSYgdsW/F+MFOBA==}
+    dev: true
+
+  /lodash.merge/4.6.2:
+    resolution: {integrity: sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==}
+    dev: true
+
   /merge-anything/5.0.2:
     resolution: {integrity: sha512-POPQBWkBC0vxdgzRJ2Mkj4+2NTKbvkHo93ih+jGDhNMLzIw+rYKjO7949hOQM2X7DxMHH1uoUkwWFLIzImw7gA==}
     engines: {node: '>=12.13'}
@@ -1270,6 +1303,14 @@ packages:
       '@babel/types': 7.18.10
       solid-js: 1.4.8
     dev: true
+
+  /solid-transition-group/0.0.10_solid-js@1.4.8:
+    resolution: {integrity: sha512-b3O9z6BUP60CG1WnTdqFuvHms0reDNYwQF+eAEEaSaoDEmiOu9+Lu7zQgWGySJjaAdSAClhmFCmx/eAjQgfIoA==}
+    peerDependencies:
+      solid-js: ^1.0.0
+    dependencies:
+      solid-js: 1.4.8
+    dev: false
 
   /source-map-js/1.0.2:
     resolution: {integrity: sha512-R0XvVJ9WusLiqTCEiGCmICCMplcCkIwwR11mOSD9CR5u+IXYdiseeEuXCVAjS54zqwkLcPNnmU4OeJ6tUrWhDw==}

@@ -5,18 +5,19 @@ import "./index.css";
 
 interface Props {
   placeholder: string;
+  onSend: (value: string) => void;
 }
 
-const Input: Component<Props> = ({ placeholder }) => {
+const Input: Component<Props> = ({ placeholder, onSend }) => {
   let inputRef: HTMLDivElement;
 
   const focusInput = () => {
     inputRef?.focus();
   };
 
-  const handleChange = (e) => {
+  const handleChange = (e: { currentTarget: HTMLInputElement }) => {
     const { innerHTML, textContent } = e.currentTarget;
-    console.log("e", innerHTML, textContent);
+    console.log("innerHTML", innerHTML);
     if (textContent === "") {
       inputRef.innerHTML = "";
     }
@@ -30,9 +31,24 @@ const Input: Component<Props> = ({ placeholder }) => {
     console.log("focusout");
   };
 
+  const handleKeyDown = (e: KeyboardEvent) => {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      onSend(inputRef.innerText);
+      clearInputValue();
+    }
+  };
+
+  const clearInputValue = () => {
+    inputRef.innerHTML = "";
+  };
+
   return (
     <div class="w-full pb-5 px-4">
-      <div class="w-full min-h-[14] flex items-center bg-base-300 overflow-hidden rounded-xl">
+      <div
+        class="w-full min-h-[14] flex items-center bg-base-300 overflow-hidden rounded-xl"
+        onContextMenu={undefined}
+      >
         <div class="w-14 h-14 cursor-pointer flex justify-center items-center">
           <Happy class="w-6 h-6 text-white/50 hover:text-white" />
         </div>
@@ -46,6 +62,7 @@ const Input: Component<Props> = ({ placeholder }) => {
           onInput={handleChange}
           onBlur={handleBlur}
           onFocusOut={handleFocusOut}
+          onKeyDown={handleKeyDown}
           aria-label={placeholder}
         />
         <div class="w-14 h-14 cursor-pointer flex justify-center items-center">
