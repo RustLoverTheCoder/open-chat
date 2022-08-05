@@ -9,3 +9,8 @@ export interface Message {
   content: MessageContent;
   date: number;
 }
+
+export interface MousePosition {
+  x: number;
+  y: number;
+}

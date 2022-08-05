@@ -34,7 +34,9 @@ const Input: Component<Props> = ({ placeholder, onSend }) => {
   const handleKeyDown = (e: KeyboardEvent) => {
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
-      onSend(inputRef.innerText);
+      if (inputRef.textContent) {
+        onSend(inputRef.innerText);
+      }
       clearInputValue();
     }
   };
