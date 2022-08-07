@@ -8,6 +8,7 @@ export interface Message {
   id: number;
   content: MessageContent;
   date: number;
+  senderId: number
 }
 
 export interface MousePosition {

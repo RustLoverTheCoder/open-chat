@@ -29,7 +29,7 @@ const Message: Component<{ message: MessageType; showAvatar: boolean }> = ({
         />
       </Show>
       <Show when={!showAvatar}>
-        <span class="absolute left-0 top-0 h-14 text-xs">
+        <span class="absolute left-0 top-0 h-14 text-xs opacity-0">
           {formatTime(message.date)}
         </span>
       </Show>

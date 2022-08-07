@@ -34,7 +34,7 @@ const App: Component = () => {
   // });
 
   const handleSend = (value) => {
-    setMessages((old) => [...old, { content: { text: value }, date: now() }]);
+    setMessages((old) => [...old, { content: { text: value }, date: now(), senderId: 1 }]);
     setTimeout(() => {
       messageContainerRef.scrollTo({
         top: messageContainerRef.scrollHeight,
@@ -108,11 +108,9 @@ const App: Component = () => {
               <div class="flex-1 relative">
                 <div
                   ref={messageContainerRef}
-                  class="absolute top-0 right-0 bottom-0 left-0 mb-2 overflow-y-scroll overflow-x-hidden transition-all"
+                  class="absolute top-0 right-0 bottom-0 left-0 overflow-y-scroll overflow-x-hidden transition-all"
                 >
-                  <div class="message-container w-full min-h-full flex flex-col justify-end">
-                    <MessageList />
-                  </div>
+                  <MessageList />
                 </div>
               </div>
               <Input placeholder="给@奥斯卡私信" onSend={handleSend} />
