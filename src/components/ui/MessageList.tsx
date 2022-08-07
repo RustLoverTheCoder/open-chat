@@ -17,7 +17,7 @@ const MessageList: Component = () => {
     <For each={groupMessageList()}>
       {(dateGroup: any[]) => {
         return (
-          <div class="flex flex-col justify-end w-full">
+          <div class="flex flex-col justify-start items-start w-full h-auto">
             <For each={dateGroup}>
               {(messageItem) => <Message message={messageItem} showAvatar={messageItem.preSenderId !== messageItem.senderId} />}
             </For>

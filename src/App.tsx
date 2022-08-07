@@ -110,7 +110,9 @@ const App: Component = () => {
                   ref={messageContainerRef}
                   class="absolute top-0 right-0 bottom-0 left-0 overflow-y-scroll overflow-x-hidden transition-all"
                 >
-                  <MessageList />
+                  <div class="relative w-full min-h-full flex flex-col justify-end shrink-0 overflow-hidden">
+                    <MessageList />
+                  </div>
                 </div>
               </div>
               <Input placeholder="给@奥斯卡私信" onSend={handleSend} />

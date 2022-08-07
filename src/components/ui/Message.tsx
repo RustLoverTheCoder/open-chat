@@ -17,7 +17,7 @@ const Message: Component<{ message: MessageType; showAvatar: boolean }> = ({
 
   return (
     <div
-      class="pr-4 pl-[72px] w-full flex items-end hover:bg-base-300 relative mt-1"
+      class="pr-4 pl-[72px] w-full flex items-end hover:bg-base-300 relative"
       ref={messageRef}
       onContextMenu={open}
     >
