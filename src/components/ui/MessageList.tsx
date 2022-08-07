@@ -1,6 +1,6 @@
-import { Component, For, createEffect, createMemo } from "solid-js";
+import { Component, For, createMemo } from "solid-js";
 import { messages } from "../../stores";
-import { formatTime, formatDate } from "../../utils/dateFormat";
+import { formatDateSeparator } from "../../utils/dateFormat";
 import { groupMessages } from "../../utils/groupMessages";
 import Message from "./Message";
 
@@ -18,6 +18,9 @@ const MessageList: Component = () => {
       {(dateGroup: any[]) => {
         return (
           <div class="flex flex-col justify-start items-start w-full h-auto">
+            <div class="text-13 w-full text-center my-1.5">
+              {formatDateSeparator(dateGroup[0].date)}
+            </div>
             <For each={dateGroup}>
               {(messageItem) => <Message message={messageItem} showAvatar={messageItem.preSenderId !== messageItem.senderId} />}
             </For>

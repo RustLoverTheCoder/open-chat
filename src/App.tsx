@@ -1,9 +1,5 @@
 import {
   Component,
-  createEffect,
-  createSignal,
-  onCleanup,
-  For,
   onMount,
 } from "solid-js";
 import { window } from "@tauri-apps/api";
@@ -108,7 +104,7 @@ const App: Component = () => {
               <div class="flex-1 relative">
                 <div
                   ref={messageContainerRef}
-                  class="absolute top-0 right-0 bottom-0 left-0 overflow-y-scroll overflow-x-hidden transition-all"
+                  class="absolute top-0 right-0 bottom-0 left-0 overflow-y-scroll overflow-x-hidden transition-all mb-4"
                 >
                   <div class="relative w-full min-h-full flex flex-col justify-end shrink-0 overflow-hidden">
                     <MessageList />

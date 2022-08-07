@@ -11,3 +11,7 @@ export function formatTime(datetime: number) {
 export function formatDate(datetime: number) {
   return dayjs.unix(datetime).format("YYYY/MM/DD");
 }
+
+export function formatDateSeparator(datetime: number) {
+  return dayjs.unix(datetime).format("YYYY年MM月DD日");
+}
