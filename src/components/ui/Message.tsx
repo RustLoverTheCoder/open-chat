@@ -17,7 +17,7 @@ const Message: Component<{ message: MessageType; showAvatar: boolean }> = ({
 
   return (
     <div
-      class="pr-4 pl-[72px] w-full flex items-end hover:bg-base-300 relative"
+      class="pr-4 pl-[72px] w-full flex items-end hover:bg-base-300 relative group"
       ref={messageRef}
       onContextMenu={open}
     >
@@ -29,8 +29,10 @@ const Message: Component<{ message: MessageType; showAvatar: boolean }> = ({
         />
       </Show>
       <Show when={!showAvatar}>
-        <span class="absolute left-0 top-0 h-14 text-xs opacity-0">
-          {formatTime(message.date)}
+        <span class="absolute left-0 top-0 w-14 text-xs opacity-0 group-hover:opacity-100">
+          <div class="h-[22px] flex items-center justify-end pr-1">
+            <span>{formatTime(message.date)}</span>
+          </div>
         </span>
       </Show>
       <p class="text-15" style={{ "white-space": "pre-wrap" }}>
