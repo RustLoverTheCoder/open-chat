@@ -1,6 +1,7 @@
 import { Component } from "solid-js";
+import { iconType } from "../../types";
 
-const ChatAlt: Component<{ class: string }> = (props) => {
+const ChatAlt: Component<iconType> = (props) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

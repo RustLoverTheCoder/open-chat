@@ -1,6 +1,7 @@
 import { Component } from "solid-js";
+import { iconType } from "../../types";
 
-const Microphone: Component<{ class: string }> = (props) => {
+const Microphone: Component<iconType> = (props) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

@@ -1,7 +1,4 @@
-import {
-  Component,
-  onMount,
-} from "solid-js";
+import { Component, createSignal, onMount, Show } from "solid-js";
 import { window } from "@tauri-apps/api";
 import Header from "./components/ui/header";
 import Search from "./components/icons/search";
@@ -14,8 +11,10 @@ import { Transition } from "solid-transition-group";
 import MessageList from "./components/ui/MessageList";
 import { setMessages } from "./stores";
 import { now } from "./utils/dateFormat";
+import { Tab as TabType } from "./types/index";
 
 const App: Component = () => {
+  const [tab, setTab] = createSignal<TabType>("chat");
   let messageContainerRef: HTMLDivElement;
   onMount(() => {
     const win = window.getCurrent();
@@ -30,7 +29,10 @@ const App: Component = () => {
   // });
 
   const handleSend = (value) => {
-    setMessages((old) => [...old, { content: { text: value }, date: now(), senderId: 1 }]);
+    setMessages((old) => [
+      ...old,
+      { content: { text: value }, date: now(), senderId: 1 },
+    ]);
     setTimeout(() => {
       messageContainerRef.scrollTo({
         top: messageContainerRef.scrollHeight,
@@ -87,9 +89,33 @@ const App: Component = () => {
             </div>
           </div>
           <div class="flex items-center justify-around h-12">
-            <ChatAlt class="w-6 h-6 text-white cursor-pointer" />
-            <UserCircle class="w-6 h-6 text-white/40 cursor-pointer" />
-            <Cog class="w-6 h-6 text-white/40 cursor-pointer" />
+            <Show when={tab() === "chat"}>
+              <ChatAlt class="w-6 h-6 text-white cursor-pointer" />
+            </Show>
+            <Show when={tab() !== "chat"}>
+              <ChatAlt
+                class="w-6 h-6 text-white/40 cursor-pointer"
+                onClick={() => setTab("chat")}
+              />
+            </Show>
+            <Show when={tab() === "contacts"}>
+              <UserCircle class="w-6 h-6 text-white cursor-pointer" />
+            </Show>
+            <Show when={tab() !== "contacts"}>
+              <UserCircle
+                class="w-6 h-6 text-white/40 cursor-pointer"
+                onClick={() => setTab("contacts")}
+              />
+            </Show>
+            <Show when={tab() === "settings"}>
+              <Cog class="w-6 h-6 text-white cursor-pointer" />
+            </Show>
+            <Show when={tab() !== "settings"}>
+              <Cog
+                class="w-6 h-6 text-white/40 cursor-pointer"
+                onClick={() => setTab("settings")}
+              />
+            </Show>
           </div>
         </div>
         {/* Middle transition-transform sm:transition-none duration-300 sm:duration-[0ms] translate-x-screen sm:translate-x-0 */}

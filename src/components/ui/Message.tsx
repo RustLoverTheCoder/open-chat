@@ -38,8 +38,8 @@ const Message: Component<{ message: MessageType; showAvatar: boolean }> = ({
       <p class="text-15" style={{ "white-space": "pre-wrap" }}>
         <Show when={showAvatar}>
           <span class="text-white">
-            奥斯卡奥斯卡奥斯卡奥斯卡奥斯卡
-            <span class="text-xs text-base-content ml-2">
+            <span class="cursor-pointer">奥斯卡奥斯卡奥斯卡奥斯卡奥斯卡</span>
+            <span class="text-xs text-base-content ml-2 cursor-pointer">
               {formatDate(message.date)}
             </span>
           </span>

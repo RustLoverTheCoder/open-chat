@@ -8,10 +8,17 @@ export interface Message {
   id: number;
   content: MessageContent;
   date: number;
-  senderId: number
+  senderId: number;
 }
 
 export interface MousePosition {
   x: number;
   y: number;
+}
+
+export type Tab = "chat" | "contacts" | "settings";
+
+export interface iconType {
+  class: string;
+  onClick?: () => void;
 }
