@@ -7,6 +7,7 @@ specifiers:
   autoprefixer: ^10.4.8
   daisyui: ^2.20.0
   dayjs: ^1.11.4
+  emoji-data-ios: git+https://github.com/korenskoy/emoji-data-ios#54443d1938ec1c157e74d2a95e9103dcb3f5c6dd
   lodash: ^4.17.21
   postcss: ^8.4.14
   solid-js: ^1.4.8
@@ -21,6 +22,7 @@ dependencies:
   '@tauri-apps/api': 1.0.2
   daisyui: 2.20.0_6qxuh3ctkxhae7jnbdaexscv2m
   dayjs: 1.11.4
+  emoji-data-ios: github.com/korenskoy/emoji-data-ios/54443d1938ec1c157e74d2a95e9103dcb3f5c6dd
   lodash: 4.17.21
   solid-js: 1.4.8
   solid-transition-group: 0.0.10_solid-js@1.4.8
@@ -1565,3 +1567,9 @@ packages:
   /yaml/1.10.2:
     resolution: {integrity: sha512-r3vXyErRCYJ7wg28yvBY5VSoAF8ZvlcW9/BwUzEtUsjvX/DKs24dIkuwjtuprwJJHsbyUbLApepYTR1BN4uHrg==}
     engines: {node: '>= 6'}
+
+  github.com/korenskoy/emoji-data-ios/54443d1938ec1c157e74d2a95e9103dcb3f5c6dd:
+    resolution: {tarball: https://codeload.github.com/korenskoy/emoji-data-ios/tar.gz/54443d1938ec1c157e74d2a95e9103dcb3f5c6dd}
+    name: emoji-data-ios
+    version: 0.4.0
+    dev: false

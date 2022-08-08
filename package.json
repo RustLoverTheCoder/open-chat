@@ -26,6 +26,7 @@
     "lodash": "^4.17.21",
     "solid-js": "^1.4.8",
     "solid-transition-group": "^0.0.10",
-    "websocket": "^1.0.34"
+    "websocket": "^1.0.34",
+    "emoji-data-ios": "git+https://github.com/korenskoy/emoji-data-ios#54443d1938ec1c157e74d2a95e9103dcb3f5c6dd"
   }
 }

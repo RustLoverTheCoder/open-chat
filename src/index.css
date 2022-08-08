@@ -10,3 +10,8 @@ body,
     @apply h-full;
     @apply overflow-hidden;
 }
+
+.hidden-scrollbar::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+}

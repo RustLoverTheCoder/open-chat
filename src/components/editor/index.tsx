@@ -1,6 +1,7 @@
 import { Component } from "solid-js";
 import Happy from "../icons/happy";
 import PlusCircle from "../icons/plusCircle";
+// import EmojsPicker from "../ui/EmojiPicker";
 import "./index.css";
 
 interface Props {
@@ -15,7 +16,7 @@ const Input: Component<Props> = ({ placeholder, onSend }) => {
     inputRef?.focus();
   };
 
-  const handleChange = (e: { currentTarget: HTMLInputElement }) => {
+  const handleChange = (e) => {
     const { innerHTML, textContent } = e.currentTarget;
     console.log("innerHTML", innerHTML);
     if (textContent === "") {
@@ -48,12 +49,24 @@ const Input: Component<Props> = ({ placeholder, onSend }) => {
   return (
     <div class="w-full pb-5 px-4">
       <div
-        class="w-full min-h-[14] flex items-center bg-base-300 overflow-hidden rounded-xl"
+        class="w-full min-h-[14] flex items-center bg-base-300 rounded-xl"
         onContextMenu={undefined}
       >
-        <div class="w-14 h-14 cursor-pointer flex justify-center items-center">
-          <Happy class="w-6 h-6 text-white/50 hover:text-white" />
+        <div class="dropdown dropdown-top dropdown-hover">
+          <label
+            tabindex="0"
+            class="w-14 h-14 cursor-pointer flex justify-center items-center group"
+          >
+            <Happy class="w-6 h-6 text-white/50 group-hover:text-white" />
+          </label>
+          <div
+            tabindex="0"
+            class="dropdown-content card shadow bg-base-100 rounded-box w-[424px]"
+          >
+            {/* <EmojsPicker /> */}
+          </div>
         </div>
+
         <div
           ref={inputRef}
           contentEditable
@@ -67,8 +80,24 @@ const Input: Component<Props> = ({ placeholder, onSend }) => {
           onKeyDown={handleKeyDown}
           aria-label={placeholder}
         />
-        <div class="w-14 h-14 cursor-pointer flex justify-center items-center">
-          <PlusCircle class="w-6 h-6 text-white/50 hover:text-white" />
+        <div class="dropdown dropdown-top dropdown-hover dropdown-end">
+          <label
+            tabindex="0"
+            class="w-14 h-14 cursor-pointer flex justify-center items-center group"
+          >
+            <PlusCircle class="w-6 h-6 text-white/50 group-hover:text-white" />
+          </label>
+          <ul
+            tabindex="0"
+            class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
+          >
+            <li>
+              <a>照片、视频</a>
+            </li>
+            <li>
+              <a>文件</a>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
