@@ -1,6 +1,6 @@
 import { Component, For, createMemo } from "solid-js";
 import { messages } from "../../stores";
-import { formatDateSeparator } from "../../utils/dateFormat";
+import { formatDateSeparator, isInterval } from "../../utils/dateFormat";
 import { groupMessages } from "../../utils/groupMessages";
 import Message from "./Message";
 
@@ -22,7 +22,7 @@ const MessageList: Component = () => {
               {formatDateSeparator(dateGroup[0].date)}
             </div>
             <For each={dateGroup}>
-              {(messageItem) => <Message message={messageItem} showAvatar={messageItem.preSenderId !== messageItem.senderId} />}
+              {(messageItem, index) => <Message message={messageItem} showAvatar={messageItem.preSenderId !== messageItem.senderId || index() === 0 || isInterval(messageItem.preDate, messageItem.date)} />}
             </For>
           </div>
         )

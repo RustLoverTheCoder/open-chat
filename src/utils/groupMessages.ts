@@ -5,13 +5,14 @@ import { formatDate } from "./dateFormat";
 export function groupMessages(messagesList: Message[]) {
     let newMessageList: any[] = []
     messagesList.forEach((message, index) => {
-        let newMessage = { ...message, nextSenderId: undefined, dateGroupId: undefined, preSenderId: undefined }
+        let newMessage = { ...message, nextSenderId: undefined, dateGroupId: undefined, preSenderId: undefined, preDate: undefined }
         if (index !== messagesList.length - 1) {
             newMessage.nextSenderId = messagesList[index + 1].senderId
         }
 
         if (index !== 0) {
             newMessage.preSenderId = messagesList[index - 1].senderId
+            newMessage.preDate = messagesList[index - 1].date
         }
 
         newMessage.dateGroupId = formatDate(message.date)
