@@ -21,6 +21,7 @@ const App: Component = () => {
     win.show();
     messageContainerRef.scrollTop = messageContainerRef.scrollHeight;
   });
+
   // document.addEventListener("contextmenu", (event) => event.preventDefault());
   // onCleanup(() => {
   //   document.removeEventListener("contextmenu", (event) =>

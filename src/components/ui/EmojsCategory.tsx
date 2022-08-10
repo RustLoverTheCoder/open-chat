@@ -1,5 +1,11 @@
-import { Component, For, Show } from "solid-js";
+import { Component, For, Show, lazy, Suspense } from "solid-js";
 import { AllEmojis, EmojiCategoryData } from "../../types";
+// import { getSrc } from "../../utils/getSrc";
+
+// const RenderImage = lazy(async () => {
+//   const res = await getSrc();
+//   return <button class="btn btn-sm btn-ghost btn-square">1</button>;
+// });
 
 const EmojsCategory: Component<{
   category: EmojiCategoryData;
@@ -20,7 +26,11 @@ const EmojsCategory: Component<{
             if (!emoji) {
               return undefined;
             }
-            return <button class="btn btn-sm btn-ghost btn-square">1</button>;
+            return (
+              <Suspense fallback={<p>Loading...</p>}>
+                {/* <RenderImage name={"123"} /> */}
+              </Suspense>
+            );
           }}
         </For>
       </div>

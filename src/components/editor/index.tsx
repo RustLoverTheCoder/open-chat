@@ -1,8 +1,9 @@
-import { Component } from "solid-js";
+import { Component, lazy } from "solid-js";
 import Happy from "../icons/happy";
 import PlusCircle from "../icons/plusCircle";
-// import EmojsPicker from "../ui/EmojiPicker";
 import "./index.css";
+
+const EmojiPickerComponent = lazy(() => import("../ui/EmojiPicker"));
 
 interface Props {
   placeholder: string;
@@ -52,10 +53,11 @@ const Input: Component<Props> = ({ placeholder, onSend }) => {
         class="w-full min-h-[14] flex items-center bg-base-300 rounded-xl"
         onContextMenu={undefined}
       >
-        <div class="dropdown dropdown-top dropdown-hover">
+        <div class="dropdown dropdown-top dropdown-open">
           <label
             tabindex="0"
             class="w-14 h-14 cursor-pointer flex justify-center items-center group"
+            onChange={(e) => console.log("1")}
           >
             <Happy class="w-6 h-6 text-white/50 group-hover:text-white" />
           </label>
@@ -63,7 +65,8 @@ const Input: Component<Props> = ({ placeholder, onSend }) => {
             tabindex="0"
             class="dropdown-content card shadow bg-base-100 rounded-box w-[424px]"
           >
-            {/* <EmojsPicker /> */}
+            <div>123123</div>
+            <EmojiPickerComponent />
           </div>
         </div>
 
