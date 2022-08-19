@@ -3,15 +3,23 @@
 @tailwind utilities;
 
 
-html,
-body,
-#root {
-    @apply w-full;
-    @apply h-full;
-    @apply overflow-hidden;
+@layer {
+
+    html,
+    body,
+    #root {
+        @apply w-full;
+        @apply h-full;
+        @apply overflow-hidden;
+    }
+
 }
 
 .hidden-scrollbar::-webkit-scrollbar {
     width: 0px;
     height: 0px;
+}
+
+[contenteditable] {
+    outline: 0px solid transparent;
 }

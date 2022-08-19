@@ -1,7 +1,11 @@
-import { Component, lazy } from "solid-js";
+import { Component, createEffect, lazy } from "solid-js";
 import Happy from "../icons/happy";
 import PlusCircle from "../icons/plusCircle";
-import "./index.css";
+import { createTiptapEditor } from "solid-tiptap";
+import StarterKit from "@tiptap/starter-kit";
+import Placeholder from "@tiptap/extension-placeholder";
+//@ts-ignore
+import Image from "@tiptap/extension-image";
 
 const EmojiPickerComponent = lazy(() => import("../ui/EmojiPicker"));
 
@@ -13,44 +17,28 @@ interface Props {
 const Input: Component<Props> = ({ placeholder, onSend }) => {
   let inputRef: HTMLDivElement;
 
-  const focusInput = () => {
-    inputRef?.focus();
-  };
+  const editor = createTiptapEditor({
+    get element() {
+      return inputRef;
+    },
+    get extensions() {
+      return [StarterKit, Image, Placeholder];
+    },
+    content: ``,
+    autofocus: true,
+  });
 
-  const handleChange = (e) => {
-    const { innerHTML, textContent } = e.currentTarget;
-    console.log("innerHTML", innerHTML);
-    if (textContent === "") {
-      inputRef.innerHTML = "";
+  createEffect(() => {
+    const instance = editor();
+    if (instance) {
+      console.log("instance", instance);
     }
-  };
-
-  const handleBlur = () => {
-    console.log("blur");
-  };
-
-  const handleFocusOut = () => {
-    console.log("focusout");
-  };
-
-  const handleKeyDown = (e: KeyboardEvent) => {
-    if (e.key === "Enter" && !e.shiftKey) {
-      e.preventDefault();
-      if (inputRef.textContent) {
-        onSend(inputRef.innerText);
-      }
-      clearInputValue();
-    }
-  };
-
-  const clearInputValue = () => {
-    inputRef.innerHTML = "";
-  };
+  });
 
   return (
     <div class="w-full pb-5 px-4">
       <div
-        class="w-full min-h-[14] flex items-center bg-base-300 rounded-xl"
+        class="w-full min-h-[14] flex items-end bg-base-300 rounded-xl"
         onContextMenu={undefined}
       >
         <div class="dropdown dropdown-top">
@@ -69,21 +57,13 @@ const Input: Component<Props> = ({ placeholder, onSend }) => {
             <EmojiPickerComponent />
           </div>
         </div>
-
         <div
+          id="editor"
           ref={inputRef}
-          contentEditable
-          dir="auto"
-          class="content-editable-input flex-1 text-white outline-none text-base font-normal py-4"
+          class="flex-1 text-white outline-none text-base py-4"
           style={{ "caret-color": "white" }}
-          onClick={focusInput}
-          onInput={handleChange}
-          onBlur={handleBlur}
-          onFocusOut={handleFocusOut}
-          onKeyDown={handleKeyDown}
-          aria-label={placeholder}
         />
-        <div class="dropdown dropdown-top dropdown-hover dropdown-end">
+        <div class="dropdown dropdown-top dropdown-end">
           <label
             tabindex="0"
             class="w-14 h-14 cursor-pointer flex justify-center items-center group"
@@ -92,7 +72,7 @@ const Input: Component<Props> = ({ placeholder, onSend }) => {
           </label>
           <ul
             tabindex="0"
-            class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52"
+            class="dropdown-content menu p-2 shadow bg-base-300 rounded-box w-52 mb-2"
           >
             <li>
               <a>照片、视频</a>

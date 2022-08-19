@@ -21,12 +21,18 @@
   },
   "dependencies": {
     "@tauri-apps/api": "^1.0.2",
+    "@tiptap/core": "2.0.0-beta.182",
+    "@tiptap/extension-image": "2.0.0-beta.30",
+    "@tiptap/extension-placeholder": "2.0.0-beta.53",
+    "@tiptap/starter-kit": "2.0.0-beta.191",
+    "async-mutex": "^0.3.2",
     "daisyui": "^2.20.0",
     "dayjs": "^1.11.4",
+    "emoji-data-ios": "git+https://github.com/korenskoy/emoji-data-ios#54443d1938ec1c157e74d2a95e9103dcb3f5c6dd",
     "lodash": "^4.17.21",
     "solid-js": "^1.4.8",
+    "solid-tiptap": "^0.3.3",
     "solid-transition-group": "^0.0.10",
-    "websocket": "^1.0.34",
-    "emoji-data-ios": "git+https://github.com/korenskoy/emoji-data-ios#54443d1938ec1c157e74d2a95e9103dcb3f5c6dd"
+    "websocket": "^1.0.34"
   }
 }
