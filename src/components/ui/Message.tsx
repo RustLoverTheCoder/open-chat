@@ -16,41 +16,46 @@ const Message: Component<{ message: MessageType; showAvatar: boolean }> = ({
   onMount(() => console.log("messageRef", messageRef));
 
   return (
-    <div
-      class="pr-4 pl-[72px] w-full flex items-end hover:bg-base-300 relative group"
-      ref={messageRef}
-      onContextMenu={open}
-    >
+    <>
       <Show when={showAvatar}>
-        <Avatar
-          type="circle"
-          url="https://www.com8.cn/wp-content/uploads/2020/11/20201108023309-5fa758e5be02a.jpg"
-          Class="absolute left-4 top-0.5"
-        />
+        <div class="w-full h-4 shrink-0" />
       </Show>
-      <Show when={!showAvatar}>
-        <span class="absolute left-0 top-0 w-14 text-xs opacity-0 group-hover:opacity-100">
-          <div class="h-[22px] flex items-center justify-end pr-1">
-            <span>{formatTime(message.date)}</span>
-          </div>
-        </span>
-      </Show>
-      <p class="text-15" style={{ "white-space": "pre-wrap" }}>
+      <div
+        class="pr-4 pl-[72px] w-full flex items-end hover:bg-base-300 relative group"
+        ref={messageRef}
+        onContextMenu={open}
+      >
         <Show when={showAvatar}>
-          <span class="text-white">
-            <span class="cursor-pointer">奥斯卡奥斯卡奥斯卡奥斯卡奥斯卡</span>
-            <span class="text-xs text-base-content ml-2 cursor-pointer">
-              {formatDate(message.date)}
-            </span>
-          </span>
-          <br />
+          <Avatar
+            type="circle"
+            url="https://www.com8.cn/wp-content/uploads/2020/11/20201108023309-5fa758e5be02a.jpg"
+            Class="absolute left-4 top-0.5"
+          />
         </Show>
-        {message.content?.text}
-      </p>
-      <Show when={isOpen()}>
-        <ContextMenu position={position()} />
-      </Show>
-    </div>
+        <Show when={!showAvatar}>
+          <span class="absolute left-0 top-0 w-14 text-xs opacity-0 group-hover:opacity-100">
+            <div class="h-[22px] flex items-center justify-end pr-1">
+              <span>{formatTime(message.date)}</span>
+            </div>
+          </span>
+        </Show>
+        <p class="text-15" style={{ "white-space": "pre-wrap" }}>
+          <Show when={showAvatar}>
+            <span class="text-white">
+              <span class="cursor-pointer">奥斯卡奥斯卡奥斯卡奥斯卡奥斯卡</span>
+              <span class="text-xs text-base-content ml-2 cursor-pointer">
+                {formatDate(message.date)}
+              </span>
+            </span>
+            <br />
+          </Show>
+          {message.content?.text}
+        </p>
+        <Show when={isOpen()}>
+          <ContextMenu position={position()} />
+        </Show>
+      </div>
+    </>
   );
 };
 

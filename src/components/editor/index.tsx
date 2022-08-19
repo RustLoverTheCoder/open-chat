@@ -53,7 +53,7 @@ const Input: Component<Props> = ({ placeholder, onSend }) => {
         class="w-full min-h-[14] flex items-center bg-base-300 rounded-xl"
         onContextMenu={undefined}
       >
-        <div class="dropdown dropdown-top dropdown-open">
+        <div class="dropdown dropdown-top">
           <label
             tabindex="0"
             class="w-14 h-14 cursor-pointer flex justify-center items-center group"
