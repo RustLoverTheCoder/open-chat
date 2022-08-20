@@ -22,4 +22,34 @@
 
 [contenteditable] {
     outline: 0px solid transparent;
+    word-break: break-all;
+}
+
+.ProseMirror p.is-editor-empty:first-child::before {
+    color: #adb5bd;
+    content: attr(data-placeholder);
+    float: left;
+    height: 0;
+    pointer-events: none;
+}
+
+.custom-scroll {
+    scrollbar-width: thin;
+    scrollbar-color: transparent transparent;
+    transition: scrollbar-color 0.3s ease;
+
+    -webkit-overflow-scrolling: touch;
+    pointer-events: auto;
+}
+
+.custom-scroll::-webkit-scrollbar-thumb {
+    background-color: transparent;
+    border-radius: 0.375rem;
+    box-shadow: 0 0 1px rgba(255, 255, 255, 0.01);
+}
+
+.custom-scroll:hover,
+:focus,
+:focus-within {
+    scrollbar-color: transparent;
 }

@@ -5,6 +5,7 @@ specifiers:
   '@tauri-apps/api': ^1.0.2
   '@tauri-apps/cli': ^1.0.5
   '@tiptap/core': 2.0.0-beta.182
+  '@tiptap/extension-bullet-list': 2.0.0-beta.29
   '@tiptap/extension-image': 2.0.0-beta.30
   '@tiptap/extension-placeholder': 2.0.0-beta.53
   '@tiptap/starter-kit': 2.0.0-beta.191
@@ -27,6 +28,7 @@ specifiers:
 dependencies:
   '@tauri-apps/api': 1.0.2
   '@tiptap/core': 2.0.0-beta.182
+  '@tiptap/extension-bullet-list': 2.0.0-beta.29_jdrcmhoxj44u3cq7gnenksjiqq
   '@tiptap/extension-image': 2.0.0-beta.30_jdrcmhoxj44u3cq7gnenksjiqq
   '@tiptap/extension-placeholder': 2.0.0-beta.53_jdrcmhoxj44u3cq7gnenksjiqq
   '@tiptap/starter-kit': 2.0.0-beta.191

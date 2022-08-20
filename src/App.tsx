@@ -64,7 +64,7 @@ const App: Component = () => {
           </div>
           <div class="flex-1 relative">
             <div class="absolute top-0 right-0 left-0 bottom-0 overflow-y-auto overflow-x-hidden custom-scroll">
-              {Array.from(new Array(20)).map((_, i) => (
+              {Array.from(new Array(300)).map((_, i) => (
                 <div class="w-full px-2 h-auto">
                   <div class="h-16 w-full px-2 flex items-center space-x-2 rounded-lg cursor-pointer hover:bg-white/10">
                     <img

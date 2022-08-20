@@ -6,6 +6,7 @@ import StarterKit from "@tiptap/starter-kit";
 import Placeholder from "@tiptap/extension-placeholder";
 //@ts-ignore
 import Image from "@tiptap/extension-image";
+import BulletList from '@tiptap/extension-bullet-list'
 
 const EmojiPickerComponent = lazy(() => import("../ui/EmojiPicker"));
 
@@ -17,14 +18,30 @@ interface Props {
 const Input: Component<Props> = ({ placeholder, onSend }) => {
   let inputRef: HTMLDivElement;
 
+  const CustomBulletList = BulletList.extend({
+    addKeyboardShortcuts() {
+      return {
+        // ↓ your new keyboard shortcut
+        'Enter': ({ editor }) => {
+          /// 发送
+          /// 删除内容 
+          onSend(editor.getText())
+          editor.commands.clearContent(true)
+          return true
+        }
+      }
+    },
+  })
+
+
+
   const editor = createTiptapEditor({
     get element() {
       return inputRef;
     },
     get extensions() {
-      return [StarterKit, Image, Placeholder];
+      return [StarterKit, Image, CustomBulletList, Placeholder.configure({ placeholder: placeholder })];
     },
-    content: ``,
     autofocus: true,
   });
 
@@ -38,7 +55,7 @@ const Input: Component<Props> = ({ placeholder, onSend }) => {
   return (
     <div class="w-full pb-5 px-4">
       <div
-        class="w-full min-h-[14] flex items-end bg-base-300 rounded-xl"
+        class="w-full min-h-[14] flex items-start bg-base-300 rounded-xl"
         onContextMenu={undefined}
       >
         <div class="dropdown dropdown-top">
@@ -51,7 +68,7 @@ const Input: Component<Props> = ({ placeholder, onSend }) => {
           </label>
           <div
             tabindex="0"
-            class="dropdown-content card shadow bg-base-100 rounded-box w-[424px]"
+            class="dropdown-content card shadow bg-base-100 rounded-box w-[424px] mb-2"
           >
             <div>123123</div>
             <EmojiPickerComponent />
@@ -60,8 +77,8 @@ const Input: Component<Props> = ({ placeholder, onSend }) => {
         <div
           id="editor"
           ref={inputRef}
+          data-placeholder={placeholder}
           class="flex-1 text-white outline-none text-base py-4"
-          style={{ "caret-color": "white" }}
         />
         <div class="dropdown dropdown-top dropdown-end">
           <label
