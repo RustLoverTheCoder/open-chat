@@ -40,7 +40,12 @@ const Input: Component<Props> = ({ placeholder, onSend }) => {
       return inputRef;
     },
     get extensions() {
-      return [StarterKit, Image, CustomBulletList, Placeholder.configure({ placeholder: placeholder })];
+      return [
+        StarterKit,
+        Image,
+        CustomBulletList,
+        Placeholder,
+      ]
     },
     autofocus: true,
   });
