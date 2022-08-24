@@ -9,11 +9,11 @@ fn main() {
   tauri::Builder::default()
     .setup(|app| {
       WindowBuilder::new(app, "main", tauri::WindowUrl::App("index.html".into()))
-        .inner_size(320.0, 640.0)
+        .inner_size(380.0, 640.0)
         .visible(false)
         .title("")
         .hidden_title(true)
-        .min_inner_size(320.0, 640.0)
+        .min_inner_size(380.0, 640.0)
         .title_bar_style(TitleBarStyle::Overlay)
         .build()?;
 

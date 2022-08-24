@@ -15,6 +15,7 @@ import { Tab as TabType } from './types/index'
 import { createVirtualizer } from '@tanstack/solid-virtual'
 import { activeChannel, setActiveChannel } from './stores'
 import ChevronLeft from './components/icons/chevronLeft'
+import MoreHorizontal from './components/icons/moreHorizontal'
 
 const App: Component = () => {
   const [tab, setTab] = createSignal<TabType>('chat')
@@ -272,9 +273,8 @@ const App: Component = () => {
             </Show>
           </div>
         </div>
-        {/* Middle transition-transform sm:transition-none duration-300 sm:duration-[0ms] translate-x-screen sm:translate-x-0 */}
         <div
-          class={`sm:flex-1 flex flex-col bg-base-200 fixed top-7 sm:top-0 right-0 left-0 bottom-0 sm:relative  transition-transform sm:transition-none duration-300 sm:duration-[0ms] ${!activeChannel?.id ? 'translate-x-screen' : 'translate-x-0'}  sm:translate-x-0`}>
+          class={`sm:flex-1 flex flex-col bg-base-200 fixed top-7 sm:top-0 right-0 left-0 bottom-0 sm:relative  transition-transform sm:transition-none duration-200 sm:duration-[0ms] ${!activeChannel?.id ? 'translate-x-screen' : 'translate-x-0'}  sm:translate-x-0`}>
           <Show when={!activeChannel?.id}>
             <div class='flex-1 justify-center items-center hidden sm:flex'>
               <button class='btn'>
@@ -284,11 +284,22 @@ const App: Component = () => {
           </Show>
           <Show when={!!activeChannel?.id}>
             <div class='w-full h-12 flex items-center border-b border-white/10'>
-              <div class='w-full flex justify-start items-center px-4'>
-                <button class='btn btn-ghost btn-square flex sm:hidden' onClick={() => setActiveChannel({})}>
-                  <ChevronLeft class='w-5 h-5 text-white cursor-pointer' />
-                </button>
-                <div class='text-lg font-semibold text-white'>{activeChannel.name}</div>
+              <div class='w-full flex justify-between items-center px-2 sm:px-4'>
+                <div class='flex items-center'>
+                  <button class='btn btn-ghost btn-square flex sm:hidden hover:bg-transparent btn-sm'
+                          onClick={() => setActiveChannel({ id: '', name: '' })}>
+                    <ChevronLeft class='w-5 h-5 text-white cursor-pointer' />
+                  </button>
+                  <div class='text-lg font-semibold text-white'>{activeChannel.name}</div>
+                </div>
+                <div class='flex items-center'>
+                  <button class='btn btn-ghost btn-square flex sm:hidden hover:bg-transparent w-10 h-10'>
+                    <Search class='w-6 h-6 text-white cursor-pointer' />
+                  </button>
+                  <button class='btn btn-ghost btn-square flex sm:hidden hover:bg-transparent w-10 h-10'>
+                    <MoreHorizontal class='w-6 h-6 text-white cursor-pointer' />
+                  </button>
+                </div>
               </div>
             </div>
             <Transition name='fade'>

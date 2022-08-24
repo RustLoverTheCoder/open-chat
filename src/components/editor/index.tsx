@@ -1,14 +1,14 @@
-import { Component, createEffect, lazy } from "solid-js";
-import Happy from "../icons/happy";
-import PlusCircle from "../icons/plusCircle";
-import { createTiptapEditor } from "solid-tiptap";
-import StarterKit from "@tiptap/starter-kit";
-import Placeholder from "@tiptap/extension-placeholder";
+import { Component, createEffect, lazy, Show } from 'solid-js'
+import Happy from '../icons/happy'
+import PlusCircle from '../icons/plusCircle'
+import { createTiptapEditor } from 'solid-tiptap'
+import StarterKit from '@tiptap/starter-kit'
+import Placeholder from '@tiptap/extension-placeholder'
 //@ts-ignore
-import Image from "@tiptap/extension-image";
+import Image from '@tiptap/extension-image'
 import BulletList from '@tiptap/extension-bullet-list'
 
-const EmojiPickerComponent = lazy(() => import("../ui/EmojiPicker"));
+const EmojiPickerComponent = lazy(() => import('../ui/EmojiPicker'))
 
 interface Props {
   placeholder: string;
@@ -16,7 +16,9 @@ interface Props {
 }
 
 const Input: Component<Props> = ({ placeholder, onSend }) => {
-  let inputRef: HTMLDivElement;
+  let inputRef: HTMLDivElement
+  let emojiContainerRef: HTMLDivElement
+
 
   const CustomBulletList = BulletList.extend({
     addKeyboardShortcuts() {
@@ -30,71 +32,69 @@ const Input: Component<Props> = ({ placeholder, onSend }) => {
           return true
         }
       }
-    },
+    }
   })
-
 
 
   const editor = createTiptapEditor({
     get element() {
-      return inputRef;
+      return inputRef
     },
     get extensions() {
       return [
         StarterKit,
         Image,
         CustomBulletList,
-        Placeholder,
+        Placeholder
       ]
     },
-    autofocus: true,
-  });
+    autofocus: true
+  })
 
   createEffect(() => {
-    const instance = editor();
+    const instance = editor()
     if (instance) {
-      console.log("instance", instance);
+      console.log('instance', instance)
     }
-  });
+  })
 
   return (
-    <div class="w-full pb-5 px-4">
+    <div class='w-full pb-5 px-4'>
       <div
-        class="w-full min-h-[14] flex items-start bg-base-300 rounded-xl"
+        class='w-full min-h-[14] flex items-start bg-base-300 rounded-xl'
         onContextMenu={undefined}
       >
-        <div class="dropdown dropdown-top">
+        <div class='dropdown dropdown-top'>
           <label
-            tabindex="0"
-            class="w-14 h-14 cursor-pointer flex justify-center items-center group"
-            onChange={(e) => console.log("1")}
+            tabindex='0'
+            class='w-14 h-14 cursor-pointer flex justify-center items-center group'
+            onChange={(e) => console.log('1')}
           >
-            <Happy class="w-6 h-6 text-white/50 group-hover:text-white" />
+            <Happy class='w-6 h-6 text-white/50 group-hover:text-white' />
           </label>
           <div
-            tabindex="0"
-            class="dropdown-content card shadow bg-base-100 rounded-box w-[424px] mb-2"
+            tabindex='0'
+            class='dropdown-content card shadow bg-base-100 rounded-box sm:w-[424px] w-[calc(100vw-32px)] mb-2'
           >
-            <div>123123</div>
             <EmojiPickerComponent />
           </div>
         </div>
         <div
-          id="editor"
+          id='editor'
           ref={inputRef}
           data-placeholder={placeholder}
-          class="flex-1 text-white outline-none text-base py-4"
+          class='flex-1 text-white outline-none text-base py-4'
         />
-        <div class="dropdown dropdown-top dropdown-end">
+        <div class='dropdown dropdown-top dropdown-end'>
           <label
-            tabindex="0"
-            class="w-14 h-14 cursor-pointer flex justify-center items-center group"
+            tabindex='0'
+            class='w-14 h-14 cursor-pointer flex justify-center items-center group'
           >
-            <PlusCircle class="w-6 h-6 text-white/50 group-hover:text-white" />
+            <PlusCircle class='w-6 h-6 text-white/50 group-hover:text-white' />
           </label>
           <ul
-            tabindex="0"
-            class="dropdown-content menu p-2 shadow bg-base-300 rounded-box w-52 mb-2"
+            tabindex='0'
+            class='dropdown-content menu p-2 shadow bg-base-300 rounded-box w-52 mb-2'
           >
             <li>
               <a>照片、视频</a>
@@ -106,7 +106,7 @@ const Input: Component<Props> = ({ placeholder, onSend }) => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Input;
+export default Input
