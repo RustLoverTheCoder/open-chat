@@ -24,7 +24,7 @@ const EmojsCategory: Component<{
               <Suspense fallback={<div />}>
                 <button class='btn btn-sm btn-ghost btn-square'>
                   <img
-                    src={`https://raw.githubusercontent.com/korenskoy/emoji-data-ios/master/img-apple-64/${emoji?.image}.png`}
+                    src={`public/img-apple-64/${emoji?.image}.png`}
                     alt='' class='w-6 h-6' />
                 </button>
               </Suspense>
