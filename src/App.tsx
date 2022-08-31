@@ -76,11 +76,11 @@ const App: Component = () => {
                 onClick={() => setActiveChannel({ id: String(virtualItem.index), name: '123' })}
               >
                 <div
-                  class={`h-16 w-full px-2 flex items-center space-x-2 rounded-lg cursor-pointer hover:bg-white/10 group ${Number(activeChannel.id) == virtualItem.index}`}>
-                  <div class='avatar'>
-                    <div class='w-12 h-12 mask mask-squircle'>
+                  class={`h-16 w-full px-2 flex items-center space-x-2 rounded-lg cursor-pointer hover:bg-white/10 group chat-item ${Number(activeChannel.id) == virtualItem.index}`}>
+                  <div class='avatar mask mask-squircle group-hover:rounded-none'>
+                    <div class='w-12 h-12'>
                       <img src='https://www.com8.cn/wp-content/uploads/2020/11/20201108023309-5fa758e5be02a.jpg'
-                           class='rounded-full group-hover:rounded-none' />
+                           class='' />
                     </div>
                   </div>
 
